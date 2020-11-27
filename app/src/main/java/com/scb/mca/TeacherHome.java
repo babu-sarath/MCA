@@ -1,28 +1,28 @@
 package com.scb.mca;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.scb.mca.fragments.StudentAttendanceFragment;
-import com.scb.mca.fragments.StudentHomeFragment;
-import com.scb.mca.fragments.StudentNotesFragment;
-import com.scb.mca.fragments.StudentPaymentsFragment;
-import com.scb.mca.fragments.StudentSettingsFragment;
+import com.scb.mca.fragments.TeacherHomeFragment;
+import com.scb.mca.fragments.TeacherNotesFragment;
+import com.scb.mca.fragments.TeacherPaymentsFragment;
+import com.scb.mca.fragments.TeacherSettingsFragment;
 
-public class StudentHome extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class TeacherHome extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_home);
+        setContentView(R.layout.activity_teacher_home);
 
         //loading default fragment
-        loadFragment(new StudentHomeFragment());
+        loadFragment(new TeacherHomeFragment());
 
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
@@ -35,7 +35,7 @@ public class StudentHome extends AppCompatActivity implements BottomNavigationVi
 
         switch (item.getItemId()){
             case R.id.navigation_home:
-                fragment = new StudentHomeFragment();
+                fragment = new TeacherHomeFragment();
                 break;
 
             case R.id.navigation_calendar:
@@ -43,15 +43,15 @@ public class StudentHome extends AppCompatActivity implements BottomNavigationVi
                 break;
 
             case R.id.navigation_notes:
-                fragment = new StudentNotesFragment();
+                fragment = new TeacherNotesFragment();
                 break;
 
             case R.id.navigation_payment:
-                fragment = new StudentPaymentsFragment();
+                fragment = new TeacherPaymentsFragment();
                 break;
 
             case R.id.navigation_settings:
-                fragment = new StudentSettingsFragment();
+                fragment = new TeacherSettingsFragment();
                 break;
         }
         return loadFragment(fragment);

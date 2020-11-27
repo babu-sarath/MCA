@@ -2,16 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.scb.mca">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MCA">
-        <activity android:name=".StudentQuestions"></activity>
+        android:theme="@style/Theme.MCA"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".TeacherPaymentDetails"></activity>
+        <activity android:name=".StudentsPaymentHistory" />
+        <activity android:name=".StudentsPayment" />
+        <activity android:name=".StudentQuery" />
+        <activity android:name=".ViewNote" />
+        <activity android:name=".StudentQuestions" />
         <activity android:name=".StudentNotes" />
         <activity android:name=".StudentHome" />
+        <activity android:name=".TeacherHome" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -20,6 +31,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_3OvTq6T7Wrlbki" />
     </application>
 
 </manifest>

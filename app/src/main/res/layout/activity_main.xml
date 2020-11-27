@@ -13,33 +13,46 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <EditText
-            android:id="@+id/editTextTextEmailAddress"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="15dp"
-            android:hint="Username"
-            android:ems="10"
-            android:inputType="textEmailAddress" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/editTextTextEmailAddress"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:hint="Username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:ems="10"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <EditText
-            android:id="@+id/editTextTextPassword"
-            android:layout_width="250dp"
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="25dp"
-            android:hint="Password"
-            android:ems="10"
-            android:inputType="textPassword" />
+            app:passwordToggleEnabled="true">
+            <EditText
+                android:id="@+id/editTextTextPassword"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="25dp"
+                android:hint="Password"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/button"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
             android:onClick="login"
+            style="@style/button"
             android:text="Login" />
 
         <TextView

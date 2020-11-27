@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "456589900870",
+    "firebase_url": "https://kjc-mca-plus.firebaseio.com",
+    "project_id": "kjc-mca-plus",
+    "storage_bucket": "kjc-mca-plus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456589900870:android:d7c356aefae7b34d979e47",
+        "android_client_info": {
+          "package_name": "com.scb.mca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456589900870-adlph2ff6lo57n54c1uv1o7vp1hn87a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqqCc9-pkxuoPl4MHjh2IT5VXOySXWpnU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456589900870-adlph2ff6lo57n54c1uv1o7vp1hn87a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
