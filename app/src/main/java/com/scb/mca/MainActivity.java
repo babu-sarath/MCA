@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     EditText email,password;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
+    }
     public void login(View view) {
         String emailStr,passwordStr;
         emailStr=email.getText().toString();
@@ -55,14 +60,15 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-//
                         checkUser(emailStr);
                     }
                     else {
-                        Toast.makeText(getApplicationContext(),"Authentication Failed. Error: "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(),"Authentication Failed. "+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                     }
                 }
             });
+        }else {
+            Toast.makeText(this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
         }
 
     }

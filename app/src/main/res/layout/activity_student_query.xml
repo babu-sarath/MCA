@@ -4,8 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
     android:orientation="vertical"
     tools:context=".StudentQuery">
 
@@ -14,50 +12,65 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:fontFamily="@font/robotoblack"
+        android:textSize="23dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
+        android:background="#CBADFF"
         android:gravity="center"
+        android:drawableLeft="@drawable/ic_back"
+        android:drawablePadding="8dp"
+        android:onClick="goBack"
         android:text="Query" />
 
-    <com.google.android.material.textfield.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/query"
+            <EditText
+                android:id="@+id/query"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:hint="Enter the question" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:onClick="sendQuery"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="25dp"
+            style="@style/button"
+            android:text="Submit" />
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Enter the question" />
+            android:drawableLeft="@drawable/ic_history"
+            android:fontFamily="@font/robotomedium"
+            android:layout_marginBottom="20dp"
+            android:drawablePadding="8dp"
+            android:textSize="20dp"
+            android:gravity="left"
+            android:text="Queries history" />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <ListView
+            android:background="@drawable/listview_shape"
+            android:id="@+id/queries_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
 
-
-    <Button
-        android:onClick="sendQuery"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        style="@style/button"
-        android:text="Submit" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/ic_history"
-        android:layout_marginBottom="20dp"
-        android:drawablePadding="8dp"
-        android:textSize="20dp"
-        android:gravity="left"
-        android:text="Queries history" />
-
-    <ListView
-        android:id="@+id/queries_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 </LinearLayout>

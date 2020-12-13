@@ -143,16 +143,16 @@ public class StudentHomeFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String atnd,totl,dbAttendance;
-                int attended,total;
+                float attended,total;
                 if(documentSnapshot.exists()){
                     atnd= String.valueOf(documentSnapshot.get("attended"));
                     totl= String.valueOf(documentSnapshot.get("total"));
                     dbAttendance= String.valueOf(documentSnapshot.get("attendance"));
-                    attended=Integer.parseInt(atnd);
-                    total=Integer.parseInt(totl);
-                    int res2=total-attended;
+                    attended=Float.parseFloat(atnd);
+                    total=Float.parseFloat(totl);
+                    float res2=(float) total-attended;
                     attendance.setText(dbAttendance);
-                    missedClasses.setText(Integer.toString(res2));
+                    missedClasses.setText(Float.toString(res2));
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {

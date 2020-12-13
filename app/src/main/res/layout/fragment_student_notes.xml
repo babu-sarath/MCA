@@ -1,24 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp">
+    android:layout_height="match_parent">
 
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:fontFamily="@font/robotoblack"
+        android:textSize="23dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
+        android:background="#CBADFF"
         android:gravity="center"
         android:text="Notes" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:orientation="vertical">
 
         <Spinner
@@ -51,18 +53,19 @@
                 android:text="Ring teacher"/>
 
         </LinearLayout>
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <ListView
-            android:id="@+id/notes_list"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <ListView
+                android:background="@drawable/listview_shape"
+                android:id="@+id/notes_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

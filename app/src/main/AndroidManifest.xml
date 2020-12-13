@@ -14,13 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MCA"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TeacherPaymentDetails"></activity>
+        <activity android:name=".TeacherAttendanceEnter"></activity>
+        <activity android:name=".TeacherPaymentDetails" />
         <activity android:name=".StudentsPaymentHistory" />
         <activity android:name=".StudentsPayment" />
         <activity android:name=".StudentQuery" />
         <activity android:name=".ViewNote" />
-        <activity android:name=".StudentQuestions" />
-        <activity android:name=".StudentNotes" />
         <activity android:name=".StudentHome" />
         <activity android:name=".TeacherHome" />
         <activity android:name=".ForgotPassword" />

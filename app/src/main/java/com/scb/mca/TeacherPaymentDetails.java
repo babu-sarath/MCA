@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -29,8 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeacherPaymentDetails extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
-    TextView title,description,price,date;
-    Switch switchInfo;
+    TextView title,description,price,date,priceTotal;
+    SwitchMaterial switchInfo;
     ListView payments_list;
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
@@ -47,6 +49,7 @@ public class TeacherPaymentDetails extends AppCompatActivity implements Compound
         date=findViewById(R.id.date);
         switchInfo=findViewById(R.id.switchInfo);
         payments_list=findViewById(R.id.payments_list);
+        priceTotal=findViewById(R.id.priceTotal);
 
         switchInfo.setChecked(true);
         switchInfo.setOnCheckedChangeListener(this);
@@ -61,9 +64,14 @@ public class TeacherPaymentDetails extends AppCompatActivity implements Compound
         currentUser=mAuth.getCurrentUser();
         if(currentUser!=null){
             getBasicInfo();
-            loadList("Paid");
             getCurrentClass();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void getBasicInfo() {
@@ -75,6 +83,7 @@ public class TeacherPaymentDetails extends AppCompatActivity implements Compound
                         description.setText(String.valueOf(documentSnapshot.get("description")));
                         price.setText(String.valueOf(documentSnapshot.get("price")));
                         date.setText(String.valueOf(documentSnapshot.get("expiry")));
+                        loadList("Paid");
                     }
                 }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -99,10 +108,13 @@ public class TeacherPaymentDetails extends AppCompatActivity implements Compound
                     if(error==null){
                         data= (List<String>) value.get("paid");
                     }
+                    String priceTxt=price.getText().toString();
                     if(data.size()>0){
                         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,data);
                         arrayAdapter.notifyDataSetChanged();
                         payments_list.setAdapter(arrayAdapter);
+                        int total=data.size()*Integer.parseInt(priceTxt);
+                        priceTotal.setText(String.format("Total collected: %d", total));
                     }else {
                         data.add("No payments made");
                         ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,data);
@@ -157,5 +169,9 @@ public class TeacherPaymentDetails extends AppCompatActivity implements Compound
             loadList("Paid");
         else
             loadList("UnPaid");
+    }
+
+    public void goBack(View view) {
+        onBackPressed();
     }
 }

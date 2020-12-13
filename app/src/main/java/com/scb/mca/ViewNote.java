@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -95,6 +96,12 @@ public class ViewNote extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         currentUser=mAuth.getCurrentUser();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 
     private void loadPDF(String docID) {
@@ -191,4 +198,7 @@ public class ViewNote extends AppCompatActivity {
 
     }
 
+    public void goBack(View view) {
+        onBackPressed();
+    }
 }

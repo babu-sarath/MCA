@@ -10,21 +10,31 @@
 
         <TextView
             android:id="@+id/nametv"
+            android:textSize="20dp"
+            android:fontFamily="@font/robotobold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
 
-        <TextView
-            android:id="@+id/paymentID"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TextView" />
-
-        <TextView
-            android:id="@+id/pricetv"
+        <RelativeLayout
+            android:layout_marginTop="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/paymentID"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/pricetv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="TextView" />
+        </RelativeLayout>
+
 
         <TextView
             android:id="@+id/timestamp"

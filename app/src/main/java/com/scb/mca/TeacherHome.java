@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.scb.mca.fragments.StudentAttendanceFragment;
+import com.scb.mca.fragments.TeacherAttendanceFragment;
 import com.scb.mca.fragments.TeacherHomeFragment;
 import com.scb.mca.fragments.TeacherNotesFragment;
 import com.scb.mca.fragments.TeacherPaymentsFragment;
@@ -39,7 +40,7 @@ public class TeacherHome extends AppCompatActivity implements BottomNavigationVi
                 break;
 
             case R.id.navigation_calendar:
-                fragment = new StudentAttendanceFragment();
+                fragment = new TeacherAttendanceFragment();
                 break;
 
             case R.id.navigation_notes:

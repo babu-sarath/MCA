@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,7 +32,8 @@ public class StudentsPayment extends AppCompatActivity implements PaymentResultL
     FirebaseAuth mAuth;
     FirebaseUser currentUser;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    String docID, priceStr,name,description;
+    String docID, priceStr,name,description,eventName,eventPrice;
+    TextView message;
     int price;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +41,13 @@ public class StudentsPayment extends AppCompatActivity implements PaymentResultL
         setContentView(R.layout.activity_students_payment);
         Bundle extra=getIntent().getExtras();
         docID=extra.getString("docID");
+        eventName=extra.getString("eventName");
+        eventPrice=extra.getString("eventPrice");
 
         mAuth=FirebaseAuth.getInstance();
         pay=findViewById(R.id.pay);
+        message=findViewById(R.id.message);
+        message.setText(String.format("Pay Rs.%s for %s?", eventPrice, eventName));
 
         Checkout.preload(getApplicationContext());
 

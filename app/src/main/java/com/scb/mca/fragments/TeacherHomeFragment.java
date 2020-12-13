@@ -253,7 +253,7 @@ public class TeacherHomeFragment extends Fragment implements DatePickerDialog.On
                         List<DocumentSnapshot> docs=querySnapshot.getDocuments();
                         for(DocumentSnapshot documentSnapshot: docs){
                             nameStr= (String) documentSnapshot.get("name");
-                            infoStr= documentSnapshot.getId() +" Mob: "+documentSnapshot.get("phone")+" "+documentSnapshot.get("email");
+                            infoStr= documentSnapshot.getId() +"\nMob: "+documentSnapshot.get("phone")+"\n"+documentSnapshot.get("email");
                             subs= (List<String>) documentSnapshot.get("subjects");
                         }
                         loadList(subs);
@@ -327,6 +327,11 @@ public class TeacherHomeFragment extends Fragment implements DatePickerDialog.On
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        String day=Integer.toString(dayOfMonth);
+        String mon=Integer.toString(month+1);
+        String yr=Integer.toString(year);
+        String selectedDate=day+"-"+mon+"-"+yr;
 
+        selectNotificationDate.setText(selectedDate);
     }
 }

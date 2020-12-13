@@ -10,12 +10,15 @@
 
         <TextView
             android:id="@+id/queryTv"
+            android:fontFamily="@font/robotobold"
+            android:textSize="17dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/answerTv"
+            android:layout_marginTop="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView" />

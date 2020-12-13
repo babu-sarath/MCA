@@ -52,6 +52,7 @@ public class StudentPaymentsFragment extends Fragment {
     List<String> priceList=new ArrayList<>();
     Intent intent;
     Button history;
+    Date date = new Date();
 
     @Nullable
     @Override
@@ -68,6 +69,8 @@ public class StudentPaymentsFragment extends Fragment {
                 TextView docTv=(TextView) view.findViewById(R.id.documentID);
                 intent=new Intent(getActivity(), StudentsPayment.class);
                 intent.putExtra("docID",docTv.getText().toString());
+                intent.putExtra("eventName",nameList.get(position));
+                intent.putExtra("eventPrice",priceList.get(position));
                 startActivity(intent);
             }
         });
@@ -92,17 +95,14 @@ public class StudentPaymentsFragment extends Fragment {
 
     private void loadList() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-        Date date = new Date();
-
+        String today=dateFormat.format(date);
         db.collection("notification")
-                .whereEqualTo("type","payment").whereGreaterThanOrEqualTo("expiry",dateFormat.format(date))
+                .whereEqualTo("type","payment").whereGreaterThanOrEqualTo("expiry",today)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                     if(error==null){
-
                         //check if the current user has paid anything
-
                         List<DocumentSnapshot> documentSnapshots=value.getDocuments();
                         if(documentSnapshots.size()>0){
                             List<String> paid=new ArrayList<>();

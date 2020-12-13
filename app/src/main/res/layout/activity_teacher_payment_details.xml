@@ -7,16 +7,21 @@
     tools:context=".TeacherPaymentDetails">
 
     <TextView
-        android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18dp"
+        android:fontFamily="@font/robotoblack"
+        android:textSize="23dp"
         android:paddingTop="15dp"
         android:paddingBottom="15dp"
+        android:background="#CBADFF"
         android:gravity="center"
+        android:drawableLeft="@drawable/ic_back"
+        android:drawablePadding="8dp"
+        android:onClick="goBack"
         android:text="Payments Info" />
 
     <LinearLayout
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingLeft="15dp"
@@ -27,6 +32,7 @@
             android:id="@+id/title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
             android:textSize="20dp"
             android:layout_marginBottom="10dp"
             android:text="Add Events" />
@@ -34,7 +40,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description" />
+            android:fontFamily="@font/robotomedium"
+            android:text="Description:" />
         <TextView
             android:id="@+id/description"
             android:layout_width="wrap_content"
@@ -51,12 +58,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotomedium"
                 android:text="Price per person- " />
 
             <TextView
                 android:id="@+id/price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotomedium"
                 android:text="Add Events" />
 
         </LinearLayout>
@@ -64,30 +73,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotomedium"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotomedium"
                 android:text="Due on " />
 
             <TextView
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/robotomedium"
                 android:text="Add Events" />
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/priceTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/robotobold"
+            android:textSize="18dp"
+            android:layout_marginBottom="10dp"
+            android:text="Total collected : 0" />
 
-        <Switch
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switchInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/robotomedium"
             android:text="Paid Students" />
 
         <ListView
+            android:background="@drawable/listview_shape"
             android:id="@+id/payments_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>

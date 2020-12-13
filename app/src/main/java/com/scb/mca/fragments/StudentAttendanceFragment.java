@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,10 +22,13 @@ import com.google.android.material.chip.Chip;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.scb.mca.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StudentAttendanceFragment extends Fragment {
@@ -97,17 +101,18 @@ public class StudentAttendanceFragment extends Fragment {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 String atnd,totl,dbAttendance;
-                int attended,total;
+                float attended,total;
                 if(documentSnapshot.exists()){
                     atnd= String.valueOf(documentSnapshot.get("attended"));
                     totl= String.valueOf(documentSnapshot.get("total"));
                     dbAttendance= String.valueOf(documentSnapshot.get("attendance"));
-                    attended=Integer.parseInt(atnd);
-                    total=Integer.parseInt(totl);
-                    int res2=total-attended;
+                    attended=Float.parseFloat(atnd);
+                    total=Float.parseFloat(totl);
+                    float res2=(float) total-attended;
                     attendance.setText(dbAttendance);
-                    missedClasses.setText(Integer.toString(res2));
+                    missedClasses.setText(Float.toString(res2));
                     setAttendanceState(dbAttendance);
+                    loadListView(regnoStr);
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -120,7 +125,7 @@ public class StudentAttendanceFragment extends Fragment {
 
     private void setAttendanceState(String dbAttendance) {
         String atd=dbAttendance.substring(0,2);
-        int attendance=Integer.parseInt(atd);
+        float attendance=Float.parseFloat(atd);
         if(attendance>85) {
             chip.setText("Above Average");
             chip.setBackgroundColor(Color.parseColor("#34A853"));
@@ -135,5 +140,28 @@ public class StudentAttendanceFragment extends Fragment {
         }
     }
 
+    private void loadListView(String regnoStr) {
+        db.collection("attendance").document(regnoStr).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                if(error==null){
+                    ArrayAdapter<String> arrayAdapter=null;
+                    List<String> abscent=new ArrayList<>();
+                    if(value.exists()){
+                        abscent= (List<String>) value.get("abscent");
+                        if(abscent!=null){
+                            arrayAdapter=new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,abscent);
+                        }else {
+                            List<String> empty=new ArrayList<>();
+                            empty.add("No records available");
+                            arrayAdapter=new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1,empty);
+                        }
+                        arrayAdapter.notifyDataSetChanged();
+                        abscentList.setAdapter(arrayAdapter);
+                    }
+                }
+            }
+        });
+    }
 
 }

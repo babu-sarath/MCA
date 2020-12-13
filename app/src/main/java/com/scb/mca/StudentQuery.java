@@ -63,6 +63,12 @@ public class StudentQuery extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     private void loadList() {
         db.collection("queries").whereEqualTo("from",currentUser.getEmail()).whereEqualTo("subject",subject)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
@@ -116,5 +122,9 @@ public class StudentQuery extends AppCompatActivity {
         }else {
             Toast.makeText(getApplicationContext(),"Please fill the field",Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void goBack(View view) {
+        onBackPressed();
     }
 }

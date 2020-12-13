@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -50,6 +51,12 @@ public class StudentsPaymentHistory extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
+
     private void loadList() {
         db.collection("payments").whereEqualTo("email",currentUser.getEmail()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
@@ -86,5 +93,9 @@ public class StudentsPaymentHistory extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"Error:"+e.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    public void goBack(View view) {
+        onBackPressed();
     }
 }
